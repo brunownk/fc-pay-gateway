@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/devfullcycle/imersao22/go-gateway/internal/domain"
-	"github.com/devfullcycle/imersao22/go-gateway/internal/dto"
+	"github.com/brunownk/fc-pay-gateway/internal/domain"
+	"github.com/brunownk/fc-pay-gateway/internal/dto"
 )
 
 type InvoiceService struct {
@@ -17,7 +17,7 @@ func NewInvoiceService(invoiceRepository domain.InvoiceRepository, accountServic
 	}
 }
 
-func (s *InvoiceService) Create(input *dto.CreateInvoiceInput) (*dto.InvoiceOutput, error) {
+func (s *InvoiceService) Create(input dto.CreateInvoiceInput) (*dto.InvoiceOutput, error) {
 	accountOutput, err := s.accountService.FindByAPIKey(input.APIKey)
 	if err != nil {
 		return nil, err

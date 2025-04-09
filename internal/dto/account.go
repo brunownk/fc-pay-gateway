@@ -3,7 +3,7 @@ package dto
 import (
 	"time"
 
-	"github.com/devfullcycle/imersao22/go-gateway/internal/domain"
+	"github.com/brunownk/fc-pay-gateway/internal/domain"
 )
 
 // CreateAccountInput representa dados para criação de conta

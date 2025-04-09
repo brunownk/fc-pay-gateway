@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/devfullcycle/imersao22/go-gateway/internal/dto"
-	"github.com/devfullcycle/imersao22/go-gateway/internal/service"
+	"github.com/brunownk/fc-pay-gateway/internal/dto"
+	"github.com/brunownk/fc-pay-gateway/internal/service"
 )
 
 // AccountHandler processa requisições HTTP relacionadas a contas

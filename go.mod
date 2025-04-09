@@ -1,4 +1,4 @@
-module github.com/devfullcycle/imersao22/go-gateway
+module github.com/brunownk/fc-pay-gateway
 
 go 1.24.1
 

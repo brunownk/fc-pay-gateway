@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/devfullcycle/imersao22/go-gateway/internal/domain"
-	"github.com/devfullcycle/imersao22/go-gateway/internal/dto"
+	"github.com/brunownk/fc-pay-gateway/internal/domain"
+	"github.com/brunownk/fc-pay-gateway/internal/dto"
 )
 
 // AccountService implementa a lógica de negócios para operações com Account
