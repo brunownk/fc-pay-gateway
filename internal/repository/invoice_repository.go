@@ -98,7 +98,7 @@ func (r *InvoiceRepository) FindByAccountID(accountID string) ([]*domain.Invoice
 }
 
 // UpdateStatus atualiza o status de uma fatura
-func (r *InvoiceRepository) UpdateStatus(id string, invoice *domain.Invoice) error {
+func (r *InvoiceRepository) UpdateStatus(invoice *domain.Invoice) error {
 	rows, err := r.db.Exec(`
 		UPDATE invoices 
 		SET status = $1, updated_at = $2

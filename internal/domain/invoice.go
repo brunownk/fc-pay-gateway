@@ -60,7 +60,7 @@ func (i *Invoice) Process() error {
 		return nil
 	}
 
-	randomSource := rand.New(rand.NewSource((time.Now().Unix())))
+	randomSource := rand.New(rand.NewSource(time.Now().Unix()))
 	var newStatus Status
 
 	if randomSource.Float64() <= 0.7 {
@@ -71,7 +71,6 @@ func (i *Invoice) Process() error {
 
 	i.Status = newStatus
 	return nil
-
 }
 
 func (i *Invoice) UpdateStatus(newStatus Status) error {

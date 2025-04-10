@@ -16,5 +16,15 @@ services:
       retries: 5
     restart: unless-stopped
 
+  migrate:
+    image: migrate/migrate
+    volumes:
+      - ./migrations:/migrations
+    command: -path=/migrations -database postgres://postgres:postgres@db:5432/gateway?sslmode=disable up
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+
 volumes:
   postgres_data:
