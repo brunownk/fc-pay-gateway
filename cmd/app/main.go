@@ -45,6 +45,11 @@ func main() {
 	}
 	defer db.Close()
 
+	// Verifica se a conexão com o banco está funcionando
+	if err := db.Ping(); err != nil {
+		log.Fatal("Error verifying database connection: ", err)
+	}
+
 	// Inicializa camadas da aplicação (repository -> service -> server)
 	accountRepository := repository.NewAccountRepository(db)
 	accountService := service.NewAccountService(accountRepository)
@@ -56,6 +61,7 @@ func main() {
 	port := getEnv("HTTP_PORT", "8080")
 	srv := server.NewServer(accountService, invoiceService, port)
 
+	log.Printf("Server starting on port %s", port)
 	if err := srv.Start(); err != nil {
 		log.Fatal("Error starting server: ", err)
 	}
