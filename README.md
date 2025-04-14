@@ -101,8 +101,8 @@ graph LR
 
 4. **Run migrations**
    ```bash
-   migrate -path migrations \
-           -database "postgresql://postgres:postgres@localhost:5432/fc_pay_gateway?sslmode=disable" \
+   migrate -path db/migrations \
+           -database "postgresql://postgres:postgres@localhost:5432/gateway?sslmode=disable" \
            up
    ```
 
@@ -110,6 +110,12 @@ graph LR
    ```bash
    docker-compose ps
    ```
+
+6. **Run the application locally**
+   ```bash
+   go run cmd/app/main.go
+   ```
+   This will start the gateway service on port 8080. Make sure all required services (PostgreSQL and Kafka) are running before starting the application.
 
 ### Docker Network Configuration
 

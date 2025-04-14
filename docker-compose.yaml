@@ -6,7 +6,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=fc_pay_gateway
+      - POSTGRES_DB=gateway
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -15,8 +15,6 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
-    networks:
-      - fc-pay-network
 
   kafka:
     image: confluentinc/cp-server:7.9.0
@@ -42,8 +40,6 @@ services:
       timeout: 10s
       retries: 3
     restart: unless-stopped
-    networks:
-      - fc-pay-network
 
   kafka-init:
     image: confluentinc/cp-server:7.9.0
@@ -56,12 +52,6 @@ services:
         kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic pending_transactions --partitions 1 --replication-factor 1 &&
         kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic transaction_results --partitions 1 --replication-factor 1 &&
         echo 'Tópicos criados com sucesso!'"
-    networks:
-      - fc-pay-network
 
 volumes:
   postgres_data:
-
-networks:
-  fc-pay-network:
-    name: fc-pay-network
