@@ -1,10 +1,6 @@
 # FC Pay Gateway
 
-[![Go](https://img.shields.io/badge/Go-1.21-blue.svg)](https://golang.org)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Docker](https://img.shields.io/badge/Docker-24.0.5-blue.svg)](https://www.docker.com)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.4-blue.svg)](https://www.postgresql.org)
-[![Kafka](https://img.shields.io/badge/Kafka-3.5.1-orange.svg)](https://kafka.apache.org)
+[![Go](https://img.shields.io/badge/Go-1.21-blue.svg)](https://golang.org) [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![Docker](https://img.shields.io/badge/Docker-24.0.5-blue.svg)](https://www.docker.com) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.4-blue.svg)](https://www.postgresql.org) [![Kafka](https://img.shields.io/badge/Kafka-3.5.1-orange.svg)](https://kafka.apache.org)
 
 A Go-based payment gateway service for FC Pay, handling account management, invoice processing, and payment transactions. Built with clean architecture principles and designed for scalability.
 
@@ -35,8 +31,6 @@ This is a personal learning journey to enhance my skills in backend development,
 
 ## Features
 
-<div align="center">
-
 | Feature | Description |
 |---------|-------------|
 | 🔐 Account Management | API key authentication and account management |
@@ -47,13 +41,9 @@ This is a personal learning journey to enhance my skills in backend development,
 | 📨 Kafka Integration | Asynchronous processing through Kafka |
 | 🗄️ PostgreSQL | Data persistence with PostgreSQL |
 
-</div>
-
 ## Architecture
 
 ### Tech Stack
-
-<div align="center">
 
 | Component | Technology |
 |-----------|------------|
@@ -62,11 +52,7 @@ This is a personal learning journey to enhance my skills in backend development,
 | Message Queue | Apache Kafka |
 | Containerization | Docker & Docker Compose |
 
-</div>
-
 ### System Components
-
-<div align="center">
 
 ```mermaid
 graph LR
@@ -78,13 +64,9 @@ graph LR
     D --> B
 ```
 
-</div>
-
 ## Getting Started
 
 ### Prerequisites
-
-<div align="center">
 
 | Requirement | Version |
 |-------------|---------|
@@ -92,8 +74,6 @@ graph LR
 | Docker | Latest |
 | Docker Compose | Latest |
 | migrate CLI | Latest |
-
-</div>
 
 ### Installation Steps
 
@@ -201,8 +181,6 @@ X-API-Key: {your_api_key}
 
 ## Transaction Rules
 
-<div align="center">
-
 | Rule | Description |
 |------|-------------|
 | 💸 Amount Threshold | Transactions under $10,000 are automatically approved |
@@ -210,11 +188,7 @@ X-API-Key: {your_api_key}
 | 🔄 Processing | All transactions are processed asynchronously through Kafka |
 | ✅ Validation | Credit card information is validated before processing |
 
-</div>
-
 ## Study Focus
-
-<div align="center">
 
 | Topic | Description |
 |-------|-------------|
@@ -226,11 +200,7 @@ X-API-Key: {your_api_key}
 | 🐳 Docker | Containerization |
 | 🔐 Authentication | Security and authorization |
 
-</div>
-
 ## Related Projects
-
-<div align="center">
 
 | Project | Description |
 |---------|-------------|
@@ -238,12 +208,6 @@ X-API-Key: {your_api_key}
 | [Web Interface](https://github.com/brunownk/fc-pay-web) | Web application interface |
 | [Antifraud Service](https://github.com/brunownk/fc-pay-antifraud) | Fraud detection service |
 
-</div>
-
 ## License
 
-<div align="center">
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-</div> 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
