@@ -10,6 +10,19 @@ Core payment processing service of FC Pay system, implemented in Go. Handles pay
 
 </div>
 
+## 📝 Project Origin
+
+This project is a fork and evolution of the original [Gateway de Pagamento](https://github.com/devfullcycle/imersao22/tree/main/go-gateway) developed during the Full Stack & Full Cycle Immersion course. 
+
+The original project was created for educational purposes, and this version aims to:
+- Deepen my understanding of Go and microservices
+- Explore and implement best practices
+- Experiment with different architectural patterns
+- Add new features and improvements
+- Create a more production-ready version
+
+This is a personal learning journey to enhance my skills in backend development, distributed systems, and payment processing.
+
 ## 🌟 Features
 
 <div align="center">
