@@ -1,14 +1,20 @@
-# FC Pay Gateway 💳
+# FC Pay Gateway
 
-<div align="center">
+[![Go](https://img.shields.io/badge/Go-1.21-blue.svg)](https://golang.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Docker](https://img.shields.io/badge/Docker-24.0.5-blue.svg)](https://www.docker.com)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.4-blue.svg)](https://www.postgresql.org)
+[![Kafka](https://img.shields.io/badge/Kafka-3.5.1-orange.svg)](https://kafka.apache.org)
 
-[![Go Version](https://img.shields.io/badge/Go-1.21%2B-blue?logo=go&logoColor=white)](https://golang.org) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?logo=postgresql&logoColor=white)](https://www.postgresql.org) [![Kafka](https://img.shields.io/badge/Kafka-Latest-black?logo=apache-kafka&logoColor=white)](https://kafka.apache.org) [![Docker](https://img.shields.io/badge/Docker-Latest-blue?logo=docker&logoColor=white)](https://www.docker.com) [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+A Go-based payment gateway service for FC Pay, handling account management, invoice processing, and payment transactions. Built with clean architecture principles and designed for scalability.
 
-Core payment processing service of FC Pay system, implemented in Go. Handles payment transactions, integrates with payment providers, and manages transaction states.
+## Table of Contents
 
-[Getting Started](#getting-started) • [Features](#features) • [API Documentation](#api-documentation) • [Architecture](#architecture)
-
-</div>
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [API Documentation](#api-documentation)
+- [Architecture](#architecture)
+- [Project Origin](#project-origin)
 
 ## 📝 Project Origin
 
