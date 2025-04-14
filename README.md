@@ -89,7 +89,11 @@ graph LR
    # The default environment variables are already configured for Docker
    ```
 
-3. **Start the services**
+3. **Start the services in order**
+
+   > ⚠️ **Important**: The services must be started in the following order to ensure proper network and dependency initialization.
+
+   a. **Start Gateway services first** (this will create the required network and Kafka broker)
    ```bash
    docker-compose up -d
    ```
@@ -99,6 +103,20 @@ graph LR
    - Kafka initialization service
    - The gateway service (port 8080)
 
+   b. **Start Antifraud service** (in fc-pay-antifraud directory)
+   ```bash
+   cd ../fc-pay-antifraud
+   cp .env.example .env
+   docker-compose up -d
+   ```
+
+   c. **Start Web interface** (in fc-pay-web directory)
+   ```bash
+   cd ../fc-pay-web
+   cp .env.example .env
+   docker-compose up -d
+   ```
+
 4. **Run migrations**
    ```bash
    migrate -path db/migrations \
@@ -106,12 +124,17 @@ graph LR
            up
    ```
 
-5. **Verify the services are running**
+5. **Verify all services are running**
    ```bash
    docker-compose ps
    ```
 
-6. **Run the application locally**
+6. **Access the application**
+   - Gateway API: http://localhost:8080
+   - Antifraud Service: http://localhost:3001
+   - Web Interface: http://localhost:3000
+
+7. **Run the application locally (optional)**
    ```bash
    go run cmd/app/main.go
    ```
