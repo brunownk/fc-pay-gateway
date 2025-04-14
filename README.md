@@ -83,32 +83,66 @@ graph LR
    cd fc-pay-gateway
    ```
 
-2. **Install dependencies**
-   ```bash
-   go mod download
-   ```
-
-3. **Configure environment**
+2. **Configure environment**
    ```bash
    cp .env.example .env
-   # Edit .env with your configurations if needed
+   # The default environment variables are already configured for Docker
    ```
 
-4. **Start services**
+3. **Start the services**
    ```bash
    docker-compose up -d
    ```
+   This will start:
+   - PostgreSQL database (port 5432)
+   - Kafka broker (port 9092)
+   - Kafka initialization service
+   - The gateway service (port 8080)
 
-5. **Run migrations**
+4. **Run migrations**
    ```bash
    migrate -path migrations \
            -database "postgresql://postgres:postgres@localhost:5432/fc_pay_gateway?sslmode=disable" \
            up
    ```
 
-6. **Start the application**
+5. **Verify the services are running**
    ```bash
-   go run cmd/app/main.go
+   docker-compose ps
+   ```
+
+### Docker Network Configuration
+
+The gateway service creates a Docker network named `fc-pay-network` that other services will use to communicate. The network configuration includes:
+
+- Database: `db:5432`
+- Kafka: `kafka:29092`
+- Gateway API: `app:8080`
+
+### Service Dependencies
+
+The gateway service depends on:
+- PostgreSQL 16 (for data persistence)
+- Apache Kafka (for asynchronous processing)
+- The antifraud service (for transaction validation)
+
+### Health Checks
+
+You can verify the services are healthy by:
+
+1. **Database**
+   ```bash
+   docker-compose exec db pg_isready -U postgres
+   ```
+
+2. **Kafka**
+   ```bash
+   docker-compose exec kafka kafka-topics --bootstrap-server kafka:29092 --list
+   ```
+
+3. **Gateway API**
+   ```bash
+   curl http://localhost:8080/health
    ```
 
 ## API Documentation
