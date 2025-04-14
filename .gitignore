@@ -1,5 +1,7 @@
 # Environment variables
+# Ignore local environment file but keep .env.example as template
 .env
+!.env.example
 
 # Binaries for programs and plugins
 *.exe
