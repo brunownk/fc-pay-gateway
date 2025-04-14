@@ -10,13 +10,17 @@ A Go-based payment gateway service for FC Pay, handling account management, invo
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-- [Features](#features)
-- [API Documentation](#api-documentation)
-- [Architecture](#architecture)
 - [Project Origin](#project-origin)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [API Documentation](#api-documentation)
+- [Transaction Rules](#transaction-rules)
+- [Study Focus](#study-focus)
+- [Related Projects](#related-projects)
+- [License](#license)
 
-## 📝 Project Origin
+## Project Origin
 
 This project is a fork and evolution of the original [Gateway de Pagamento](https://github.com/devfullcycle/imersao22/tree/main/go-gateway) developed during the Full Stack & Full Cycle Immersion course. 
 
@@ -29,7 +33,7 @@ The original project was created for educational purposes, and this version aims
 
 This is a personal learning journey to enhance my skills in backend development, distributed systems, and payment processing.
 
-## 🌟 Features
+## Features
 
 <div align="center">
 
@@ -45,7 +49,7 @@ This is a personal learning journey to enhance my skills in backend development,
 
 </div>
 
-## 🏗️ Architecture
+## Architecture
 
 ### Tech Stack
 
@@ -76,7 +80,7 @@ graph LR
 
 </div>
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -127,7 +131,7 @@ graph LR
    go run cmd/app/main.go
    ```
 
-## 📚 API Documentation
+## API Documentation
 
 ### Create Account
 
@@ -195,7 +199,7 @@ GET /invoice/{invoice_id}
 X-API-Key: {your_api_key}
 ```
 
-## 📋 Transaction Rules
+## Transaction Rules
 
 <div align="center">
 
@@ -208,7 +212,7 @@ X-API-Key: {your_api_key}
 
 </div>
 
-## 📖 Study Focus
+## Study Focus
 
 <div align="center">
 
@@ -224,7 +228,7 @@ X-API-Key: {your_api_key}
 
 </div>
 
-## 🔗 Related Projects
+## Related Projects
 
 <div align="center">
 
@@ -236,7 +240,7 @@ X-API-Key: {your_api_key}
 
 </div>
 
-## 📄 License
+## License
 
 <div align="center">
 
