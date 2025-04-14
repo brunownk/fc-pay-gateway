@@ -1,6 +1,23 @@
 # FC Pay Gateway
 
-A study project implementing a basic payment processing service with Go. Focused on learning Go fundamentals and microservices architecture.
+Core payment processing service of FC Pay system, implemented in Go. Handles payment transactions, integrates with payment providers, and manages transaction states.
+
+## Navigation
+
+- [Main Repository](https://github.com/brunownk/fc-pay)
+- [Web Interface](https://github.com/brunownk/fc-pay-web)
+- [Antifraud Service](https://github.com/brunownk/fc-pay-antifraud)
+
+## Topics
+
+- go
+- golang
+- payment-gateway
+- microservices
+- postgresql
+- backend
+- study-project
+- api
 
 ## Features
 
