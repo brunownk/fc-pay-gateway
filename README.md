@@ -68,12 +68,12 @@ graph LR
 
 ### Prerequisites
 
-| Requirement | Version |
-|-------------|---------|
-| Go | 1.21+ |
-| Docker | Latest |
-| Docker Compose | Latest |
-| migrate CLI | Latest |
+| Requirement | Version | Purpose |
+|-------------|---------|---------|
+| Go | 1.21+ | Gateway Service |
+| Docker | Latest | Containerization |
+| Docker Compose | Latest | Service Orchestration |
+| migrate CLI | Latest | Database Migrations |
 
 ### Installation Steps
 
@@ -91,54 +91,108 @@ graph LR
 
 3. **Start the services in order**
 
-   > ⚠️ **Important**: The services must be started in the following order to ensure proper network and dependency initialization.
+   > ⚠️ **Important**: Services must be started in order and each service must be healthy before starting the next.
+   > The Gateway service creates the required Docker network and Kafka broker that other services will use.
 
-   a. **Start Gateway services first** (this will create the required network and Kafka broker)
+   a. **Start Gateway services first**
    ```bash
    docker-compose up -d
    ```
+
    This will start:
    - PostgreSQL database (port 5432)
    - Kafka broker (port 9092)
    - Kafka initialization service
    - The gateway service (port 8080)
 
-   b. **Start Antifraud service** (in fc-pay-antifraud directory)
+   b. **Wait for services to be healthy** (usually takes 1-2 minutes)
    ```bash
-   cd ../fc-pay-antifraud
-   cp .env.example .env
-   docker-compose up -d
+   # Check services status
+   docker-compose ps
+   
+   # Expected output:
+   # fc-pay-gateway-db-1        ... (healthy)
+   # fc-pay-gateway-kafka-1     ... (healthy)
+   # fc-pay-gateway-kafka-init-1... (exited)
+
+   # Verify Kafka topics are created
+   docker-compose exec kafka kafka-topics --bootstrap-server kafka:29092 --list
+   
+   # Expected output:
+   # pending_transactions
+   # transaction_results
    ```
 
-   c. **Start Web interface** (in fc-pay-web directory)
+   c. **Verify all components are working**
    ```bash
-   cd ../fc-pay-web
-   cp .env.example .env
-   docker-compose up -d
+   # Check database
+   docker-compose exec db pg_isready -U postgres
+   # Expected: localhost:5432 - accepting connections
+
+   # Check Kafka broker
+   docker-compose exec kafka kafka-topics --bootstrap-server kafka:29092 --describe --topic pending_transactions
+   # Should show topic details without errors
+
+   # Check Gateway API
+   curl http://localhost:8080/health
+   # Expected: {"status":"ok"}
    ```
 
-4. **Run migrations**
+4. **Run database migrations**
    ```bash
    migrate -path db/migrations \
            -database "postgresql://postgres:postgres@localhost:5432/gateway?sslmode=disable" \
            up
    ```
 
-5. **Verify all services are running**
+5. **Next Steps**
+   After the Gateway is running and healthy, proceed to set up:
+   
+   a. **Start Antifraud service**
    ```bash
+   cd ../fc-pay-antifraud
+   cp .env.example .env
+   docker-compose up -d
+   ```
+
+   b. **Finally, start Web interface**
+   ```bash
+   cd ../fc-pay-web
+   cp .env.example .env
+   docker-compose up -d
+   ```
+
+### Troubleshooting Common Issues
+
+1. **Kafka Connection Issues**
+   ```bash
+   # Restart Kafka if topics aren't visible
+   docker-compose restart kafka
+   
+   # Wait for health check
    docker-compose ps
+   
+   # Verify topics again
+   docker-compose exec kafka kafka-topics --bootstrap-server kafka:29092 --list
    ```
 
-6. **Access the application**
-   - Gateway API: http://localhost:8080
-   - Antifraud Service: http://localhost:3001
-   - Web Interface: http://localhost:3000
-
-7. **Run the application locally (optional)**
+2. **Database Connection Issues**
    ```bash
-   go run cmd/app/main.go
+   # Check database logs
+   docker-compose logs db
+   
+   # Verify database is accepting connections
+   docker-compose exec db pg_isready -U postgres
    ```
-   This will start the gateway service on port 8080. Make sure all required services (PostgreSQL and Kafka) are running before starting the application.
+
+3. **Network Issues**
+   ```bash
+   # List networks
+   docker network ls | grep fc-pay
+   
+   # Inspect network
+   docker network inspect fc-pay-gateway_default
+   ```
 
 ### Docker Network Configuration
 
