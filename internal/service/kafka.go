@@ -37,7 +37,7 @@ func (c *KafkaConfig) WithTopic(topic string) *KafkaConfig {
 func NewKafkaConfig() *KafkaConfig {
 	broker := os.Getenv("KAFKA_BROKER")
 	if broker == "" {
-		broker = "localhost:9092"
+		broker = "kafka:9092"
 	}
 
 	topic := os.Getenv("KAFKA_PRODUCER_TOPIC")

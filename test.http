@@ -9,13 +9,16 @@ Content-Type: application/json
 
 {
     "name": "John Doe",
-    "email": "john@doew.com"
+    "email": "john2@doew.com"
 }
 
 ### Obter dados da conta
 GET {{baseUrl}}/accounts
 X-API-Key: {{apiKey}}
 
+### Obter faturas
+GET {{baseUrl}}/invoice
+X-API-Key: {{apiKey}}
 
 ### Criar uma nova fatura
 # @name createInvoice
